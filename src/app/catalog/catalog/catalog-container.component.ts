@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from "@ngrx/store";
+import * as AppReducers from '../../reducers';
 
 @Component({
   selector: 'app-catalog-container',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatalogContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _store: Store<AppReducers.State>) {
+    _store.select( 'catalog' ).subscribe( ( catalog ) => {
+     console.log(catalog);
+    } );
+  }
 
   ngOnInit() {
   }

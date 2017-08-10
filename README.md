@@ -8,8 +8,8 @@ App requirements list:
 - [X] App should be self contained.
 - [X] App should have mininum three screens (routes) (search, product description, loading catalog data).
 - [X] App should use responsive design (material design components and principles, fluid layout).
-- [ ] App should Download latest products catalog, or use it cached version.
+- [X] App should Download latest products catalog, or use it cached version.
 - [X] App should have button to redownload products catalog instead of using cached version.
-- [ ] App should work offline (create service worker).
+- [X] App should work offline (create service worker).
 - [ ] Search in app should work via service worker using Lunr.js with Name, Description, Meta Keywords, SKU of a product.
 - [ ] Load images from cache, if unable to load image and there is no internet connection use fallback instead.

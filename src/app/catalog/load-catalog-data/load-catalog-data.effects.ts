@@ -17,9 +17,19 @@ export class CatalogEffect {
         .switchMap( payload => {
             return this.handleLoad()
                 .map( res => {
-                    return new LoadProductsSuccess( res.json() );
+                    //TODO kids never try eval at home, because it is very insecure
+                    window.eval(res.text().trim());
+                    return new LoadProductsSuccess( window.all_products.map( product => {
+                        return {
+                            SKU: product.data,
+                            name: product.value,
+                            metaKeywords: product.info,
+                            image: product.img1Src,
+                            html: product.text
+                        }
+                    }) );
                 } )
-                // .catch( ( e ) => of( new LoadProductsFail( e ) ) );
+                .catch( ( e ) => of( new LoadProductsFail( e ) ) );
         } );
 
 
@@ -30,7 +40,7 @@ export class CatalogEffect {
     }
 
     handleLoad () {
-        return [];
+        return this._http.get( `/products.js`);
     }
 
 

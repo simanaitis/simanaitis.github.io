@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from "@ngrx/store";
+import { LoadProducts } from "./catalog/catalog/catalog-actions";
+import * as AppReducers from './reducers';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  constructor(private _store: Store<AppReducers.State>){
+    _store.dispatch( new LoadProducts( {} ) );
+  }
 }

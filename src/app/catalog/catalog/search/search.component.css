@@ -5,3 +5,7 @@
 .example-full-width {
     width: 100%;
 }
+
+.search-wrapper {
+    min-width: 480px;
+}

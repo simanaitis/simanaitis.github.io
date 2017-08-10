@@ -6,5 +6,9 @@ module.exports = {
         'dist/index.html',
         'dist/**.js',
         'dist/**.css'
-    ]
+    ],
+    runtimeCaching: [{
+        urlPattern: "/products.js",
+        handler: 'cacheFirst'
+    }]
 };

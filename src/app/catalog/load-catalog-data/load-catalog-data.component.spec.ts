@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadCatalogDataComponent } from './load-catalog-data.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { MockStore } from './mock-store';
 
 describe('LoadCatalogDataComponent', () => {
   let component: LoadCatalogDataComponent;
@@ -11,6 +13,9 @@ describe('LoadCatalogDataComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LoadCatalogDataComponent ],
       schemas: [NO_ERRORS_SCHEMA],
+      providers: [
+        {provide: Store, useValue: new MockStore({})}
+      ]
     })
     .compileComponents();
   }));

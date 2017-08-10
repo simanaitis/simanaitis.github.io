@@ -7,6 +7,11 @@ import { CatalogModule } from './catalog/catalog.module';
 import { MdToolbarModule, MdButtonModule, MdProgressBarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UpdateCatalogComponent } from './catalog/update-catalog/update-catalog.component';
+
+import { Store, StoreModule } from '@ngrx/store';
+import { reducers } from './reducers';
+import { CatalogEffect } from './catalog/load-catalog-data/load-catalog-data.effects';
+import { EffectsModule } from '@ngrx/effects';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
@@ -21,6 +26,8 @@ import { HttpModule } from '@angular/http';
     MdToolbarModule,
     MdButtonModule,
     BrowserAnimationsModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([CatalogEffect]),
     HttpModule
   ],
   providers: [

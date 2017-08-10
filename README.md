@@ -2,7 +2,7 @@ __Product search progresive web app example__
 
 App requirements list:
 - [ ] Generated app code should be commited.
-- [ ] App should use Angular 4.
+- [X] App should use Angular 4.
 - [ ] App should have mininum three screens (routes) (search, product description, loading catalog data).
 - [ ] App should take make use of add to home screen button (create manifest.json).
 - [ ] App should use responsive design (material design components and principles, fluid layout).

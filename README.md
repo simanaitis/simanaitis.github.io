@@ -4,10 +4,10 @@ App requirements list:
 - [X] Generated app code should be commited.
 - [X] App should use Angular 4.
 - [X] App should have everything inlined into single html.
+- [X] App should take make use of add to home screen button (create manifest.json and icons).
+- [X] App should be self contained.
 - [ ] App should have mininum three screens (routes) (search, product description, loading catalog data).
-- [ ] App should take make use of add to home screen button (create manifest.json).
 - [ ] App should use responsive design (material design components and principles, fluid layout).
-- [ ] App should be self contained.
 - [ ] App should Download latest products catalog, or use it cached version.
 - [ ] App should have button to redownload products catalog instead of using cached version.
 - [ ] App should work offline (create service worker).

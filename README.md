@@ -11,5 +11,6 @@ App requirements list:
 - [X] App should Download latest products catalog, or use it cached version.
 - [X] App should have button to redownload products catalog instead of using cached version.
 - [X] App should work offline (create service worker).
-- [ ] Search in app should work via service worker using Lunr.js with Name, Description, Meta Keywords, SKU of a product.
+- [X] Search in app should work via service worker using Lunr.js with Name, Description, Meta Keywords, SKU of a product.
+- [ ] Redownload button should clear the cache of product file.
 - [ ] Load images from cache, if unable to load image and there is no internet connection use fallback instead.

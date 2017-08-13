@@ -14,10 +14,7 @@ const initialState: State = {
 export function reducer ( state = initialState, action: CatalogActions.All ): State {
     switch ( action.type ) {
         case CatalogActions.LOAD_PRODUCTS: {
-            return {
-                ...state,
-                loaded: true
-            };
+            return state;
         }
 
         case CatalogActions.LOAD_PRODUCTS_SUCCESS: {

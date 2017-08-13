@@ -2,7 +2,7 @@
   <form class="example-form">
 
     <md-input-container class="example-full-width">
-      <input mdInput #message maxlength="256" placeholder="Search for product">
+      <input mdInput #message maxlength="256" placeholder="Search for product" (keyup)="dispatchChange($event)">
       <md-hint align="start">Use name, SKU, description or metadata </md-hint>
     </md-input-container>
 

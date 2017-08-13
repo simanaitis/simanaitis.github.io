@@ -1,7 +1,8 @@
-<div class="list-wrapper">
-  <p>
-    product-list works!
-  </p>
-</div>
+<md-list>
+  <md-list-item *ngFor="let product of products">
+    <img [src]="'https://webshop-staging.aphixsoftware.com/' + product.image"/>
+    <h4 md-line>{{product.name}}</h4>
+    <p md-line> <a routerLink="/login"> More information </a> </p>
+  </md-list-item>
 
-
+</md-list>

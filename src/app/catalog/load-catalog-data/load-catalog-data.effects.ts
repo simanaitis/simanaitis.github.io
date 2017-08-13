@@ -17,17 +17,17 @@ export class CatalogEffect {
         .switchMap( payload => {
             return this.handleLoad()
                 .map( res => {
-                    //TODO kids never try eval at home, because it is very insecure
-                    window.eval(res.text().trim());
+                    // TODO kids never try eval at home, because it is very insecure
+                    window.eval( res.text().trim() );
                     return new LoadProductsSuccess( window.all_products.map( product => {
                         return {
                             SKU: product.data,
                             name: product.value,
-                            metaKeywords: product.info,
-                            image: product.img1Src,
-                            html: product.text
-                        }
-                    }) );
+                            metaKeywords: product.info.metaKeywords,
+                            image: product.info.Image1Src,
+                            html: product.info.text
+                        };
+                    } ) );
                 } )
                 .catch( ( e ) => of( new LoadProductsFail( e ) ) );
         } );
@@ -40,7 +40,7 @@ export class CatalogEffect {
     }
 
     handleLoad () {
-        return this._http.get( `/products.js`);
+        return this._http.get( `/products.js` );
     }
 
 

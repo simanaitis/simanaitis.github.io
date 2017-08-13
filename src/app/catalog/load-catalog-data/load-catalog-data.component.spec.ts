@@ -4,6 +4,7 @@ import { LoadCatalogDataComponent } from './load-catalog-data.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MockStore } from './mock-store';
+import { Router } from '@angular/router';
 
 describe('LoadCatalogDataComponent', () => {
   let component: LoadCatalogDataComponent;
@@ -14,7 +15,8 @@ describe('LoadCatalogDataComponent', () => {
       declarations: [ LoadCatalogDataComponent ],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [
-        {provide: Store, useValue: new MockStore({})}
+        {provide: Store, useValue: new MockStore({})},
+        {provide: Router, useValue: {go: function(){}}}
       ]
     })
     .compileComponents();

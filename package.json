@@ -10,6 +10,7 @@
     "build:production": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
+    "lint:fix": "npm run lint -- --fix \"src/**/*.ts\"",
     "e2e": "ng e2e",
     "monolith": "node monolith-build.js",
     "pre-commit": [
@@ -35,6 +36,7 @@
     "@ngrx/router-store": "^4.0.2",
     "@ngrx/store": "^4.0.2",
     "core-js": "^2.4.1",
+    "js-worker-search": "^1.2.0",
     "rxjs": "^5.4.1",
     "zone.js": "^0.8.14"
   },

@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/index.html","6b8b865f748191ccd98df3820e9b4040"],["/inline.b36092f5062fb9faae3f.bundle.js","4ebfb8568ba1ad1ec8394a431e3a830b"],["/main.7e7aabeb7c22c40085e9.bundle.js","ae7d42f00a8a6d5acc7db4a110c17622"],["/polyfills.0963b44a58b5526cfab7.bundle.js","72735c82aec0afdc8e84dcfdbc5208e2"],["/products.js","f9379a64c108c70cac77bc7e00e8f83c"],["/styles.c97b067cf9569ca9485b.bundle.css","c97b067cf9569ca9485bfb3d661de575"],["/vendor.0a9f26561f74ff735449.bundle.js","d023350f0a93b745581c3cd575757d11"]];
+var precacheConfig = [["/index.html","90d2ec441cd135bb389d945e5dd2f086"],["/inline.1b4f619c63ea2239d073.bundle.js","e2e30f69d5dda157e05d8b8b2e67d8f3"],["/main.923c0c61817566317ff4.bundle.js","6652cb6226da62a75d044b051f929c1d"],["/polyfills.0963b44a58b5526cfab7.bundle.js","72735c82aec0afdc8e84dcfdbc5208e2"],["/products.js","f9379a64c108c70cac77bc7e00e8f83c"],["/styles.c97b067cf9569ca9485b.bundle.css","c97b067cf9569ca9485bfb3d661de575"],["/vendor.0a9f26561f74ff735449.bundle.js","d023350f0a93b745581c3cd575757d11"]];
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
@@ -286,6 +286,7 @@ self.addEventListener('fetch', function(event) {
 // Runtime cache configuration, using the sw-toolbox library.
 
 toolbox.router.get("/products.js", toolbox.cacheFirst, {});
+toolbox.router.get("https://webshop-staging.aphixsoftware.com/img/**/*.{png,jpg}", toolbox.cacheFirst, {});
 
 
 

@@ -10,5 +10,10 @@ module.exports = {
     runtimeCaching: [{
         urlPattern: "/products.js",
         handler: 'cacheFirst'
-    }]
+    },
+    {
+        urlPattern: "https://webshop-staging.aphixsoftware.com/img/**/*.{png,jpg}",
+        handler: 'cacheFirst'
+    }
+    ]
 };

@@ -1,19 +1,21 @@
-__Product search progresive web app example__
+Just another angular starter
 
-App requirements list:
-- [X] Generated app code should be commited.
-- [X] App should use Angular 4.
-- [X] App should have everything inlined into single html.
-- [X] App should take make use of add to home screen button (create manifest.json and icons).
-- [X] App should be self contained.
-- [X] App should have mininum three screens (routes) (search, product description, loading catalog data).
-  -[X] Load catalog
-  -[X] Search catalog
-  -[ ] Product description
-- [X] App should use responsive design (material design components and principles, fluid layout).
-- [X] App should Download latest products catalog, or use it cached version.
-- [X] App should have button to redownload products catalog instead of using cached version.
-- [X] App should work offline (create service worker).
-- [X] Search in app should work via service worker using Lunr.js with Name, Description, Meta Keywords, SKU of a product.
-- [ ] Redownload button should clear the cache of product file.
-- [X] Load images from cache, if unable to load image and there is no internet connection use fallback instead.
+Created using 
+* Angular 4 and Angular CLI 1   
+* Angular material 2.0.0-beta.8 
+* Ngrx 4
+* Service workers precache and service workers toolbox 
+
+Features to implement for developemnt
+
+**Improve readme**
+- [ ] Usefull plugins: redux tools, augularity  
+- [ ] Instalation and developing guide
+- [ ] List of usefull browser plugins
+
+**Improve developing flow**
+- Redux dev tools support
+- Hot module replace support
+- Staging environment
+- Simple E2E test
+- Advanced unti test case

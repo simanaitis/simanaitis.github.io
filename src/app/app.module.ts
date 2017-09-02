@@ -12,8 +12,29 @@ import {
 } from '@angularclass/hmr';
 import {
   RouterModule,
-  PreloadAllModules
+  PreloadAllModules, RouterStateSnapshot
 } from '@angular/router';
+
+import {
+  StoreRouterConnectingModule,
+  routerReducer,
+  RouterStateSerializer
+} from '@ngrx/router-store';
+import { Store, StoreModule } from '@ngrx/store';
+
+/**
+ * Dev only imports
+ */
+
+const DEV_IMPORTS = [];
+
+if (module.hot){
+  const {StoreDevtoolsModule} = require('@ngrx/store-devtools');
+  DEV_IMPORTS.push(StoreDevtoolsModule.instrument({
+    maxAge: 25 //  Retains last 25 states
+  }));
+}
+
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -31,6 +52,7 @@ import { XLargeDirective } from './home/x-large';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import { rootReducer, selectRootState } from "./app.reducers";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -43,6 +65,7 @@ type StoreType = {
   restoreInputValues: () => void,
   disposeOldHosts: () => void
 };
+
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -63,7 +86,10 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    StoreModule.forRoot(rootReducer),
+    StoreRouterConnectingModule,
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    ...DEV_IMPORTS
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
@@ -75,60 +101,34 @@ type StoreType = {
 })
 export class AppModule {
 
-  constructor(
-    public appRef: ApplicationRef,
-    public appState: AppState
-  ) {}
+  constructor(public appRef: ApplicationRef, private _store: Store<any> ) {
 
-  public hmrOnInit(store: StoreType) {
-    if (!store || !store.state) {
-      return;
-    }
-    console.log('HMR store', JSON.stringify(store, null, 2));
-    /**
-     * Set state
-     */
-    this.appState._state = store.state;
-    /**
-     * Set input values
-     */
-    if ('restoreInputValues' in store) {
-      let restoreInputValues = store.restoreInputValues;
-      setTimeout(restoreInputValues);
+  }
+  hmrOnInit(store) {
+    if (!store || !store.rootState) return
+
+    // restore state by dispatch a SET_ROOT_STATE action
+    if (store.rootState) {
+      this._store.dispatch({
+        type: 'SET_ROOT_STATE',
+        payload: store.rootState
+      })
     }
 
-    this.appRef.tick();
-    delete store.state;
-    delete store.restoreInputValues;
+    if ('restoreInputValues' in store) { store.restoreInputValues() }
+    this.appRef.tick()
+    Object.keys(store).forEach(prop => delete store[prop])
   }
-
-  public hmrOnDestroy(store: StoreType) {
-    const cmpLocation = this.appRef.components.map((cmp) => cmp.location.nativeElement);
-    /**
-     * Save state
-     */
-    const state = this.appState._state;
-    store.state = state;
-    /**
-     * Recreate root elements
-     */
-    store.disposeOldHosts = createNewHosts(cmpLocation);
-    /**
-     * Save input values
-     */
-    store.restoreInputValues  = createInputTransfer();
-    /**
-     * Remove styles
-     */
-    removeNgStyles();
+  hmrOnDestroy(store) {
+    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement)
+    //TODO get current ngrx state
+    store.disposeOldHosts = createNewHosts(cmpLocation)
+    store.restoreInputValues  = createInputTransfer()
+    removeNgStyles()
   }
-
-  public hmrAfterDestroy(store: StoreType) {
-    /**
-     * Display new elements
-     */
-    store.disposeOldHosts();
-    delete store.disposeOldHosts;
+  hmrAfterDestroy(store) {
+    store.disposeOldHosts()
+    delete store.disposeOldHosts
   }
 
 }

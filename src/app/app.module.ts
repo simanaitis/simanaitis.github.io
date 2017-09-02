@@ -21,6 +21,7 @@ import {
   RouterStateSerializer
 } from '@ngrx/router-store';
 import { Store, StoreModule } from '@ngrx/store';
+import 'rxjs/add/operator/take';
 
 /**
  * Dev only imports
@@ -121,7 +122,8 @@ export class AppModule {
   }
   hmrOnDestroy(store) {
     const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement)
-    //TODO get current ngrx state
+    //TODO wait until ngrx4 gets some improvement regarding ruoting and dev tools
+    this._store.take(1).subscribe((s) => store.state = s);
     store.disposeOldHosts = createNewHosts(cmpLocation)
     store.restoreInputValues  = createInputTransfer()
     removeNgStyles()

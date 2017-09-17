@@ -49,13 +49,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UpdateCatalogComponent } from './catalog/update-catalog/update-catalog.component';
 
 import { reducers } from './reducers';
-import { CatalogEffect } from './catalog/load-catalog-data/load-catalog-data.effects';
 import { EffectsModule } from '@ngrx/effects';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
 import { rootReducer, selectRootState } from "./app.reducers";
 import { AppComponent } from "./app.component";
+import { CatalogEffect } from "demo-core";
 
 // Application wide providers
 

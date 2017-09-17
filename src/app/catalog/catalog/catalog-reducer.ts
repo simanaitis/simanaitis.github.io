@@ -1,9 +1,10 @@
 import { Product } from './product';
-import * as CatalogActions from './catalog-actions';
+import * as CatalogActions from 'demo-core/ngrx/actions/catalog.ts';
+import { IProduct } from "demo-core";
 
 export interface State {
     loaded: boolean;
-    products: Product[];
+    products: IProduct[];
 }
 
 const initialState: State = {

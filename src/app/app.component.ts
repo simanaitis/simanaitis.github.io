@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { LoadProducts } from './catalog/catalog/catalog-actions';
 import * as AppReducers from './reducers';
+import { LoadProducts } from "demo-core/ngrx/actions/catalog";
 
 @Component({
   selector: 'app-root',

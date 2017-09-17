@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as AppReducers from '../../reducers';
 import SearchApi from 'js-worker-search';
-import { Product } from './product';
+import { IProduct } from "demo-core";
 
 @Component( {
     selector: 'app-catalog-container',
@@ -11,7 +11,7 @@ import { Product } from './product';
 } )
 export class CatalogContainerComponent implements OnInit {
 
-    public products: Product[];
+    public products: IProduct[];
     private searchApi: any;
     private catalog: any;
 
